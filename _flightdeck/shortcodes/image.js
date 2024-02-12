@@ -14,26 +14,29 @@
 const Image = require("@11ty/eleventy-img");
 
 // Shortcode function
-module.exports = async (src, alt, sizes) => {
-  // Image paths
+module.exports = async (src, alt, className = null, sizes = '100vw', loadAttr = 'lazy') => {
   const rootPath = `./src${src}`;
   const outputDir = "./dist/assets/images/";
   const urlPath = "/assets/images/";
-
-  // Generate metadata
   const metadata = await Image(rootPath, {
     widths: [400, 800, 1600],
-    formats: ["webp", "jpeg", "png"],
+    formats: ["webp"],
     outputDir: outputDir,
     urlPath: urlPath,
     svgShortCircuit: "size",
+    sharpWebpOptions: {
+      quality: 50,
+    },
   });
+  const format = metadata[Object.keys(metadata)[0]];
+  const data = format[format.length - 1];
 
   // Generate HTML
   return Image.generateHTML(metadata, {
     alt,
     sizes: sizes || "100vw",
-    loading: "lazy",
+    className: className != null ? className : null,
+    loading: loadAttr || "lazy",
     decoding: "async",
   });
-};
+}

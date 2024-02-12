@@ -12,7 +12,12 @@
   color: transparent;
   font-weight: bold;
   position: relative;
-  background-image: linear-gradient(90deg, var(--clip-text-color-1), var(--clip-text-color-2), var(--clip-text-color-3));
+  background-image: linear-gradient(
+    90deg,
+    var(--clip-text-color-1),
+    var(--clip-text-color-2),
+    var(--clip-text-color-3)
+  );
   background-clip: text;
   -webkit-background-clip: text;
 }

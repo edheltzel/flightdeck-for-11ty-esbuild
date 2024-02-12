@@ -15,7 +15,7 @@
 
 const isProd = process.env.ENV === "production";
 const { markdownIt } = require("./transforms/markdownIt"); // markdown-it plugins
-const { transformJs } = require("./transforms/esBuild"); // js bundling
+const transformJs = require("./transforms/esBuild"); // js bundling
 const { transformScss } = require("./transforms/scss"); // scss compiling
 const { transformImages } = require("./transforms/images"); // image optimization
 
